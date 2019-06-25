@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const [author, setAuthor] = useState("");
+  const [title, setTitle] = useState("");
+  const [book, setBook] = useState([]);
+  function handleClick(e) {
+    e.preventDefault();
+    console.log("test");
+    setBook([...book, { title: title, author: author, id: Date.now() }]);
+  }
+  function removeBook(id) {
+    setBook(book.filter(x => x.id !== id));
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <form>
+        <input
+          type="text"
+          name="title"
+          onChange={e => setTitle(e.target.value)}
+        />
+        <input
+          type="text"
+          name="author"
+          onChange={e => setAuthor(e.target.value)}
+        />
+        <button name="button" onClick={handleClick}>
+          Add Book
+        </button>
+      </form>
+      <ul>
+        {book.map(items => (
+          <li key={items.id}>
+            title:{items.title} Author:{items.author} id:{items.id}
+            <button onClick={() => removeBook(items.id)}>Remove</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
