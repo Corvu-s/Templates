@@ -1,44 +1,13 @@
-import React, { useState, useEffect } from "react";
-
-function App() {
-  const [author, setAuthor] = useState("");
-  const [title, setTitle] = useState("");
-  const [book, setBook] = useState([]);
-  function handleClick(e) {
-    e.preventDefault();
-    console.log("test");
-    setBook([...book, { title: title, author: author, id: Date.now() }]);
+import React from "react";
+import Todo from "./templates/todo";
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Todo />
+      </div>
+    );
   }
-  function removeBook(id) {
-    setBook(book.filter(x => x.id !== id));
-  }
-  return (
-    <div>
-      <form>
-        <input
-          type="text"
-          name="title"
-          onChange={e => setTitle(e.target.value)}
-        />
-        <input
-          type="text"
-          name="author"
-          onChange={e => setAuthor(e.target.value)}
-        />
-        <button name="button" onClick={handleClick}>
-          Add Book
-        </button>
-      </form>
-      <ul>
-        {book.map(items => (
-          <li key={items.id}>
-            title:{items.title} Author:{items.author} id:{items.id}
-            <button onClick={() => removeBook(items.id)}>Remove</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
 }
 
 export default App;
