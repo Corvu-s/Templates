@@ -12,6 +12,15 @@ function Weather() {
   function handleClick() {
     setbtnVal(city);
   }
+  function handleClear() {
+    setData({
+      humid: " ",
+      press: "",
+      tmp: ""
+    });
+    setDescription("");
+    setbtnVal("");
+  }
   useEffect(() => {
     axios
       .get(
@@ -39,6 +48,7 @@ function Weather() {
         onChange={e => setCity(e.target.value)}
       />
       <button onClick={handleClick}> Get Weather</button>
+      <button onClick={handleClear}>clear</button>
 
       <p>
         humidity:{weatherData.humid} pressure:{weatherData.press} temperature:
