@@ -1,6 +1,7 @@
 import React from "react";
 import Todo from "./templates/todo";
 import Weather from "./templates/api_simple";
+import Login from "./templates/login";
 class App extends React.Component {
   render() {
     return (
@@ -8,6 +9,7 @@ class App extends React.Component {
         <Todo />
         <Weather />
         {/* A JSX comment */}
+        <Login />
       </div>
     );
   }
