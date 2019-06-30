@@ -1,40 +1,43 @@
 import React, { useState } from "react";
 
 function LoginTemplate() {
-  const [login, setLogin] = useState({ username: "", email: "", password: "" });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [btn, setBtn] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
     setBtn(!btn);
-    console.log(login.email);
+    console.log(username);
+    console.log(email);
   }
-  function handleChange(e) {
-    setLogin({ [e.target.name]: e.target.value });
-  }
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           type="text"
           name="username"
-          value={login.username}
-          onChange={handleChange}
+          onChange={e => setUsername(e.target.value)}
         />
         <input
           type="text"
           name="email"
-          value={login.email}
-          onChange={handleChange}
+          onChange={e => setEmail(e.target.value)}
         />
-        <button> Submit</button>
       </form>
+
+      <button type="submit" value="submit" onClick={handleSubmit}>
+        {" "}
+        Submit
+      </button>
+
       {btn ? (
         <p>
-          username:{login.username} email:{login.email}
+          username:{username} email:{email}
         </p>
       ) : (
-        <p>false</p>
+        <p>false </p>
       )}
     </div>
   );
